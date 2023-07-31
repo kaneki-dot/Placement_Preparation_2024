@@ -1,14 +1,19 @@
 class Solution {
 public:
-    int solve(int i, int j, vector<vector<int>> &dp, int& m, int& n) {
-        if(i == m-1 || j == n-1) return 1;
-        if(dp[i][j] != 0)return dp[i][j];
-        
-        dp[i][j] = solve(i+1, j, dp, m, n) + solve(i, j+1, dp, m, n);
-        return dp[i][j];
-    }
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m , vector<int>(n , 0));
-        return solve(0, 0, dp, m, n);
+        // vector<long long>fact(m+n-1);
+        // fact[0]=1;
+        // for(int i=1;i<m+n-1;i++)
+        //     {
+        //         fact[i]=i*fact[i-1];
+        //     }
+        // return fact[m+n-2]/(fact[m-1]*fact[n-1]);
+        double f1 = lgamma(m+n-1);
+        double f2 = lgamma(m);
+        double f3 = lgamma(n);
+        double f4 = f2+f3;
+        double f5 = f1-f4;
+        return round(exp(f5));
+
     }
 };
